@@ -1,0 +1,22 @@
+.map__section{
+    width: 600px;
+    border-radius: 20px;
+    height: 600px;
+}
+
+.contact-details{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.contact-page{
+    max-width: 1210px;
+    margin: 0 auto;
+}
+.additional-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}

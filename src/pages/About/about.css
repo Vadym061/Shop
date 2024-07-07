@@ -1,0 +1,17 @@
+.about{
+    max-width: 1210px;
+    margin: 0 auto;
+    text-align: center;
+}
+.about__info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.about__description{
+    font-size: 20px;
+    text-align: center;
+}
+.about__categoty{
+    display: flex;
+    gap: 20px;
+}

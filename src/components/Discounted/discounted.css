@@ -1,0 +1,59 @@
+.section__title{
+    font-size: 30px;
+    font-weight: 600;
+    border-bottom: 2px solid #000;
+    padding: 0 0 5px 0;
+}
+.discounted{
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 40px 0 0 0;
+}
+.discounted__list{
+    display: flex;
+}
+.discounted__item{
+    width: 275px;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+}
+.discounted__item:hover img{
+    transform: scale(1.1, 1.1);
+    transition: all 0.8s ease;
+}
+.discounted__procent{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    background-color: #ff0000;
+}
+.discounted__favorite{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    background-color: #fff;
+    border: inherit;
+    border-radius: 50%;
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.titel__card{
+    font-size: 18px;
+    font-weight: 600;
+}
+.price__card--sale{
+    font-size: 16px;
+    font-weight: 400;
+    color: #ff0000;
+}
+.price__card--old{
+    font-size: 12px;
+    font-weight: 400;
+    color: #808080;
+    text-decoration: line-through;
+}

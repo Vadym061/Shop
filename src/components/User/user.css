@@ -1,0 +1,36 @@
+.user__container {
+  display: flex;
+  color: #fff;
+  font-size: 25px;
+  margin: 0 0 0 auto;
+  padding: 20px 0 0 0;
+}
+.user__item {
+  position: relative;
+}
+.user__item:not(:last-child) {
+  margin-right: 20px;
+}
+.user__item:hover {
+  color: #4975ff;
+  transition: all 0.3s ease;
+}
+.favorites-count {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 5px; /* Або відповідно до вашого дизайну */
+}
+.cart-counter {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}

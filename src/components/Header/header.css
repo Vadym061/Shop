@@ -1,0 +1,52 @@
+.header{
+    
+}
+/* =============== header style pages and contact top ================== */
+.header__top{
+    display: flex;
+    padding: 15px 20px;
+    max-width: 1180px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+.header__pages{
+    display: flex;
+}
+.header__item:not(:first-child){
+    margin-left: 15px;
+}
+.header__link{
+    text-transform: uppercase;
+    color: #575757;
+    font-size: 12px;
+}
+.header__link:hover{
+    color: #4975ff;
+    transition: all 0.3s ease;
+}
+.header__contact{
+    display: flex;
+    align-items: center;
+}
+.header__contact--link{
+    color: #575757;
+    font-size: 15px;
+}
+.header__contact--link:not(:last-child){
+    text-transform: uppercase;
+}
+.header__contact--link:hover{
+    color: #4975ff;
+    transition: all 0.3s ease;
+}
+.header__nummer{
+    font-size: 14px;
+    color: #575757;
+}
+.header__mail{
+    font-size: 14px;
+    color: #575757;
+    margin-left: 20px;
+}
+
+

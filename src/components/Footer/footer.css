@@ -1,0 +1,40 @@
+.footer{
+    background-color: #ffe4c4;
+    margin: 70px 0 0 0;
+}
+.footer__wrapper{
+    display: flex;
+    max-width: 1210px;
+    margin: 0 auto;
+    justify-content: space-between;
+
+}
+.footer__promo,
+.footer__type,
+.footer__info-item{
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 15px 0;
+    font-size: 20px;
+    font-weight: 400;
+}
+.footer__info-item:hover,
+.footer__promo:hover,
+.footer__type:hover{
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+.footer__title{
+    font-size: 22px;
+    font-weight: 600;
+}
+.footer__networks > li{
+    font-size: 24px;
+    color: #454545;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer__networks > li:hover{
+    color: #130186;
+}
