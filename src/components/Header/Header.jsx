@@ -51,7 +51,7 @@ function Header() {
           <li className="header__item">
             <Link
               className="header__contact--link"
-              to="mail:shop.online@gg.com"
+              to="mailto:shop.online@gg.com"
             >
               shop.online@gg.com
             </Link>

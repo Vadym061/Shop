@@ -8,13 +8,16 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+require('dotenv').config();
+
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'shop', // база данных
-  port: 3306 // Порт базы данных
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
+
 
 connection.connect(error => {
   if (error) {
