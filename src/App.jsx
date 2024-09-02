@@ -17,10 +17,10 @@ import NewProduct from "./pages/NewProduct/NewProduct";
 import Sale from "./pages/Sale/Sale";
 import Footer from "./components/Footer/Footer";
 import Navigation from "./components/Navigation/Navigation";
-
-import "./index.css";
 import About from "./pages/About/About";
 import Delivery from "./pages/Delivery/Delivery";
+
+import "./index.css";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -56,6 +56,10 @@ function App() {
     );
   };
 
+  const clearCart = () => {
+    setCartItems([]); // Очистити кошик
+  };
+
   return (
     <Router>
       <Header />
@@ -77,6 +81,7 @@ function App() {
               cartItems={cartItems}
               updateCartItemQuantity={updateCartItemQuantity}
               removeCartItem={removeCartItem}
+              clearCart={clearCart} // Передаємо clearCart у компонент Cart
             />
           }
         />

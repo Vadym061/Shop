@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   BiLogoInstagram,
@@ -17,15 +17,18 @@ const promotion = [
 function Footer() {
   const [types, setTypes] = useState([]);
 
-  const fetchTypes = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/api/types");
-      setTypes(response.data);
-    } catch (error) {
-      console.error("Помилка при отриманні типів:", error);
-    }
-  };
-  fetchTypes();
+  useEffect(() => {
+    const fetchTypes = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/types");
+        setTypes(response.data);
+      } catch (error) {
+        console.error("Помилка при отриманні типів:", error);
+      }
+    };
+    
+    fetchTypes();
+  }, []); // Empty dependency array means this useEffect runs once when the component mounts
 
   return (
     <div className="footer">

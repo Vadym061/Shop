@@ -1,6 +1,5 @@
 const express = require('express');
-
-const mysql = require('mysql');
+const mysql = require('mysql2'); 
 const cors = require('cors');
 
 const app = express();
@@ -19,7 +18,6 @@ const connection = mysql.createConnection({
   port: process.env.DB_PORT
 });
 
-
 connection.connect(error => {
   if (error) {
     console.error('Ошибка подключения к базе данных:', error);
@@ -28,7 +26,6 @@ connection.connect(error => {
   console.log('Подключение к базе данных успешно установлено');
 });
 
-// Маршрут для отримання всіх категорій
 app.get('/api/categories', (req, res) => {
   const query = 'SELECT * FROM categories';
   connection.query(query, (error, results) => {
@@ -41,7 +38,6 @@ app.get('/api/categories', (req, res) => {
   });
 });
 
-// Маршрут для отримання всіх типів
 app.get('/api/types', (req, res) => {
   const query = 'SELECT * FROM types';
   connection.query(query, (error, results) => {
@@ -54,7 +50,6 @@ app.get('/api/types', (req, res) => {
   });
 });
 
-// Маршрут для отримання всіх товарів
 app.get('/api/products', (req, res) => {
   const query = 'SELECT * FROM products';
   connection.query(query, (error, results) => {
@@ -67,7 +62,6 @@ app.get('/api/products', (req, res) => {
   });
 });
 
-// Маршрут для отримання товару за ID
 app.get('/api/products/:id', (req, res) => {
   const productId = req.params.id;
   const query = 'SELECT * FROM products WHERE id = ?';
@@ -84,7 +78,6 @@ app.get('/api/products/:id', (req, res) => {
     }
   });
 });
-
 
 app.listen(port, () => {
   console.log(`Сервер запущено на порту ${port}`);
