@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import News from "./pages/News/News";
 import Shop from "./pages/Shop/Shop";
@@ -19,11 +19,23 @@ import Footer from "./components/Footer/Footer";
 import Navigation from "./components/Navigation/Navigation";
 import About from "./pages/About/About";
 import Delivery from "./pages/Delivery/Delivery";
-
+import FavoritesPage from "./pages/Favorite/Favorite";
+import { FavoritesProvider } from './components/FavoritesContext/FavoritesContext';
 import "./index.css";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+
+  useState(() => {
+   
+    const savedCart = localStorage.getItem('cartItems');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  useEffect(() => {
+    
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addToCart = (product) => {
     setCartItems((prevItems) => {
@@ -60,7 +72,10 @@ function App() {
     setCartItems([]); // Очистити кошик
   };
 
+
+
   return (
+    <FavoritesProvider>
     <Router>
       <Header />
       <Navigation cartItemCount={cartItems.length} />
@@ -70,6 +85,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/" element={<Home />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
         <Route
           path="/product/:id"
           element={<ProductDetails addToCart={addToCart} />}
@@ -97,6 +113,7 @@ function App() {
       </Routes>
       <Footer />
     </Router>
+    </FavoritesProvider>
   );
 }
 

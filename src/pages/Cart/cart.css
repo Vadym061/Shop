@@ -8,11 +8,11 @@
 .cart {
   max-width: 800px;
   margin: 0 auto;
-  transition: transform 0.3s ease-in-out; /* Add transition */
+  transition: transform 0.3s ease-in-out; 
 }
 
 .cart--shifted {
-  transform: translateX(-300px); /* Shift cart left when payment form is visible */
+  transform: translateX(-300px); 
 }
 
 .cart__title {
@@ -93,17 +93,17 @@
 .payment-form {
   position: fixed;
   top: 0;
-  right: -400px; /* Hide off-screen initially */
+  right: -400px; 
   width: 300px;
   height: 100%;
   background-color: #fff;
   padding: 20px;
   border-left: 1px solid #ccc;
-  transition: right 0.3s ease-in-out; /* Slide-in effect */
+  transition: right 0.3s ease-in-out;
 }
 
 .payment-form--visible {
-  right: 0; /* Show form when visible */
+  right: 0; 
 }
 
 .payment-form h3 {

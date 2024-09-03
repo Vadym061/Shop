@@ -1,24 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import useProducts from "../../components/UseProducts/UseProducts";
 import { GrFavorite } from "react-icons/gr";
-import "../../components/Discounted/discounted.css";
-import "./sale.css";
 import { Link } from "react-router-dom";
+import { useFavorites } from '../../components/FavoritesContext/FavoritesContext';
 
 function Sale() {
   const { products, error } = useProducts();
-  const [favorites, setFavorites] = useState([]);
+  const { favorites, toggleFavorite } = useFavorites();
 
-  const toggleFavorite = (productId) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(productId)
-        ? prevFavorites.filter((id) => id !== productId)
-        : [...prevFavorites, productId]
-    );
-  };
   if (error) {
     return <div>{error}</div>;
   }
+
   return (
     <div className="discounted">
       <h2 className="section__title">Знижки</h2>
@@ -58,9 +51,7 @@ function Sale() {
                   className="discounted__favorite"
                   onClick={() => toggleFavorite(product.id)}
                   style={{
-                    backgroundColor: favorites.includes(product.id)
-                      ? "gray"
-                      : "",
+                    backgroundColor: favorites.includes(product.id) ? "gray" : "",
                   }}
                 >
                   <GrFavorite />

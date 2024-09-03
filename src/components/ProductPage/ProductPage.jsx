@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { GrFavorite } from "react-icons/gr";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,12 +10,14 @@ import TshirtGirl from "../../image/t-shirt-girl.jpeg";
 import ShortGirl from "../../image/shorts-women.jpeg";
 import SommerGirl from "../../image/sommer-women.jpeg";
 import SectionGirl from "../../image/women-secton.jpeg";
+import Product from "../Product/Product";
+import { useFavorites } from '../../components/FavoritesContext/FavoritesContext';
 import "swiper/css";
 import "../Discounted/discounted.css";
 import "../Product/product.css";
 import "../../pages/Home/home.css";
 
-// menProductSection.js
+
 export const menProductSection = [
   {
     id: 1,
@@ -33,7 +35,7 @@ export const menProductSection = [
   { id: 4, name: "Штани", description: "Секція штани", image: `${Pants}` },
 ];
 
-// womenProductSection.js
+
 export const womenProductSection = [
   {
     id: 1,
@@ -57,28 +59,11 @@ export const womenProductSection = [
 ];
 
 const ProductPage = ({ products, categoryId, bannerImage, productSection }) => {
-  const [favorites, setFavorites] = useState([]);
   const [visibleCount, setVisibleCount] = useState(8);
-
-  useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+  const { favorites, toggleFavorite } = useFavorites();
 
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 8);
-  };
-
-  const toggleFavorite = (productId) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(productId)
-        ? prevFavorites.filter((id) => id !== productId)
-        : [...prevFavorites, productId]
-    );
   };
 
   const filteredProducts = products
@@ -105,12 +90,18 @@ const ProductPage = ({ products, categoryId, bannerImage, productSection }) => {
         </Link>
       </div>
       <ul className="product__section">
-        {productSection.map((prod) => (
-          <li className="product__section--item" key={prod.id}>
-            <Link to="#" className="product__section--link">
-              <img src={prod.image} alt={prod.description} />
-              <span className="product__btn btn__home">Перейти</span>
-            </Link>
+      {products.map((product) => (
+          <li key={product.id} className="product-item">
+            <Product product={product} />
+            <button
+              className="product__favorite"
+              onClick={() => toggleFavorite(product.id)}
+              style={{
+                backgroundColor: favorites.includes(product.id) ? "gray" : "",
+              }}
+            >
+              <GrFavorite />
+            </button>
           </li>
         ))}
       </ul>

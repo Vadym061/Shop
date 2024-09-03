@@ -1,35 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useProducts from "../UseProducts/UseProducts";
 import { Link } from "react-router-dom";
 import { GrFavorite } from "react-icons/gr";
+import { useFavorites } from "../FavoritesContext/FavoritesContext";
 import "./product.css";
 import "../Discounted/discounted.css";
 
 function Product() {
   const { products, error } = useProducts();
-  const [favorites, setFavorites] = useState([]);
+  const { favorites, toggleFavorite } = useFavorites();
   const [visibleCount, setVisibleCount] = useState(8);
-
-  useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
-  }, []);
-
-  const toggleFavorite = (productId) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(productId)
-        ? prevFavorites.filter((id) => id !== productId)
-        : [...prevFavorites, productId]
-    );
-  };
-
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
-
-  const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 8);
-  };
 
   if (error) {
     return <div>{error}</div>;
@@ -54,9 +34,7 @@ function Product() {
               <p className="price__card">
                 Ціна:
                 <span
-                  className={`price__card ${
-                    product.price_old ? "price__card--sale" : ""
-                  }`}
+                  className={product.price_old ? "price__card--sale" : ""}
                 >
                   {product.price}грн
                 </span>
@@ -90,7 +68,7 @@ function Product() {
         ))}
       </ul>
       {visibleCount < products.length && (
-        <button onClick={loadMore} className="load-more">
+        <button onClick={() => setVisibleCount((prevCount) => prevCount + 8)} className="load-more">
           Показати більше
         </button>
       )}

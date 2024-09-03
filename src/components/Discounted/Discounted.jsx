@@ -1,22 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import useProducts from "../UseProducts/UseProducts";
 import { GrFavorite } from "react-icons/gr";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "./discounted.css";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../FavoritesContext/FavoritesContext";
 
 function Discounted() {
   const { products, error } = useProducts();
-  const [favorites, setFavorites] = useState([]);
+  const { favorites, toggleFavorite } = useFavorites();
 
-  const toggleFavorite = (productId) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(productId)
-        ? prevFavorites.filter((id) => id !== productId)
-        : [...prevFavorites, productId]
-    );
-  };
   if (error) {
     return <div>{error}</div>;
   }
@@ -61,9 +54,7 @@ function Discounted() {
                     className="discounted__favorite"
                     onClick={() => toggleFavorite(product.id)}
                     style={{
-                      backgroundColor: favorites.includes(product.id)
-                        ? "gray"
-                        : "",
+                      backgroundColor: favorites.includes(product.id) ? "gray" : "",
                     }}
                   >
                     <GrFavorite />
